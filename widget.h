@@ -1,10 +1,11 @@
-#ifndef WIDGET_H
-#define WIDGET_H
+#pragma once
 
 #include <QWidget>
+#include "xtrain.h"
 
-namespace Ui {
-class Widget;
+namespace Ui
+{
+	class Widget;
 }
 
 class Widget : public QWidget
@@ -18,5 +19,3 @@ public:
 private:
 	Ui::Widget *ui;
 };
-
-#endif // WIDGET_H

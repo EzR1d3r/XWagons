@@ -1,31 +1,43 @@
+#pragma once
+
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include <iostream>
 
 
 class XWagon
 {
 public:
-	XWagon(){ srand(time(0)); m_bLigt = rand()%2; }
-	XWagon(bool bLight):m_bLigt(bLight){}
-	inline bool getLight() const {return m_bLigt;}
-	inline void setLight(bool bLight){m_bLigt = bLight;}
+	XWagon(): __light(false) {}
+	XWagon(const XWagon& wag){std::cout << "copy wag " << wag.__light;}
+	XWagon(bool bLight):__light (bLight){}
+	inline bool getLight() const {return __light;}
+	inline void setLight(bool bLight){__light = bLight;}
 private:
-	bool m_bLigt;
+	bool __light;
 };
 
 class XTrain
 {
 public:
-	inline void getCurrent () const { return __current; }
-	inline void getCount () const { return __count; }
+	XTrain(int randomise){ srand( randomise ); }
+	inline int getCurrent () const { return __current; }
+	inline int getCount () const { return __count; }
 	inline void setCurrent(int c){__current = c;}
-	inline void setCount(int c){ m_Wagons.resize(c); __count = c;}
-	inline void reset(){m_Wagons.clear();}
+	inline void setCount(int c){ __Wagons.resize(c); __count = c;}
+	void reset();
+	int step_next();
+	int step_prev();
 
-	void setRandCount (unsigned int min, unsigned int max);
+	bool setRandCount( int min, int max);
+	void setRandLight();
+
+	void printTrain();
+	int getMask() const;
 private:
-	int __count;
-	int __current;
-	std::vector<XWagon> m_Wagons;
+	int __count = 0;
+	int __current = 0;
+	int __steps = 0;
+	std::vector<XWagon> __Wagons;
 };
