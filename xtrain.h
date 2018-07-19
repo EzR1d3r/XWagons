@@ -33,8 +33,8 @@ public:
 	inline void setCurrent(int c){__current = c;}
 	inline void setCount(int c){ __Wagons.resize(c); }
 	void reset();
-	int step_next();
-	int step_prev();
+	int next_wag();
+	int prev_wag();
 
 	template<typename rand_func = std_rand<0,1>> void setRandLight(rand_func _rand = std_rand<0,1>())
 	{
@@ -44,6 +44,16 @@ public:
 	int getMask() const;
 private:
 	unsigned int __current = 0;
-	unsigned int __steps = 0;
 	std::vector<XWagon> __Wagons;
+};
+
+class XPlayer
+{
+public:
+	XPlayer (XTrain * pTrain):__train(pTrain){}
+	int step_next();
+	int step_prev();
+private:
+	unsigned int __steps = 0;
+	XTrain * __train;
 };

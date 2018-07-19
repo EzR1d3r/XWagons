@@ -2,22 +2,21 @@
 
 void XTrain::reset()
 {
-	__steps = 0;
 	__current = 0;
 }
 
-int XTrain::step_next()
+int XTrain::next_wag()
 {
 	__current = __current + 1 < __Wagons.size() ? __current + 1 : 0;
-	__steps++ ;
-	return __steps;
+//	__steps++ ;
+	return __current;
 }
 
-int XTrain::step_prev()
+int XTrain::prev_wag()
 {
 	__current = __current - 1 == 0 ? 0 : __current - 1;
-	__steps++ ;
-	return __steps;
+//	__steps++ ;
+	return __current;
 }
 
 void XTrain::printTrain()
