@@ -3,13 +3,11 @@
 
 int main(int argc, char *argv[])
 {
-	XTrain train(100);
+	XTrain train;
 	train.setCount(10);
 	train.setRandLight();
-//	train.printTrain();
+	train.printTrain();
 
-	srand(time(0));
-	std::cout << rand();
 
 //	QApplication a(argc, argv);
 //	Widget w;

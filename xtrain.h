@@ -5,6 +5,13 @@
 #include <ctime>
 #include <iostream>
 
+typedef unsigned int uint;
+
+template <uint min, uint max> struct std_rand
+{
+	std_rand(){ srand( time(0) );}
+	uint operator()(){return (min + rand()%(max + 1 - min)); }
+};
 
 class XWagon
 {
@@ -21,23 +28,22 @@ private:
 class XTrain
 {
 public:
-	XTrain(int randomise){ srand( randomise ); }
 	inline int getCurrent () const { return __current; }
-	inline int getCount () const { return __count; }
+	inline int getCount () const { return __Wagons.size(); }
 	inline void setCurrent(int c){__current = c;}
-	inline void setCount(int c){ __Wagons.resize(c); __count = c;}
+	inline void setCount(int c){ __Wagons.resize(c); }
 	void reset();
 	int step_next();
 	int step_prev();
 
-	bool setRandCount( int min, int max);
-	void setRandLight();
-
+	template<typename rand_func = std_rand<0,1>> void setRandLight(rand_func _rand = std_rand<0,1>())
+	{
+		for (auto &wag:__Wagons) wag.setLight( _rand() );
+	}
 	void printTrain();
 	int getMask() const;
 private:
-	int __count = 0;
-	int __current = 0;
-	int __steps = 0;
+	unsigned int __current = 0;
+	unsigned int __steps = 0;
 	std::vector<XWagon> __Wagons;
 };
