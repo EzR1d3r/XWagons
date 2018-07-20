@@ -5,7 +5,7 @@
 #include <ctime>
 #include <iostream>
 
-typedef unsigned int uint;
+typedef uint uint;
 
 template <uint min, uint max> struct std_rand
 {
@@ -17,7 +17,6 @@ class XWagon
 {
 public:
 	XWagon(): __light(false) {}
-	XWagon(const XWagon& wag){std::cout << "copy wag " << wag.__light;}
 	XWagon(bool bLight):__light (bLight){}
 	inline bool getLight() const {return __light;}
 	inline void setLight(bool bLight){__light = bLight;}
@@ -31,10 +30,11 @@ public:
 	inline int getCurrent () const { return __current; }
 	inline int getCount () const { return __Wagons.size(); }
 	inline void setCurrent(int c){__current = c;}
-	inline void setCount(int c){ __Wagons.resize(c); }
+	inline void setCount(uint c){ __Wagons.resize(c); }
+	inline bool checkCount(uint count){return __Wagons.size() == count;}
 	void reset();
-	int next_wag();
-	int prev_wag();
+	int go_forward(uint steps);
+	int go_backward(uint steps);
 
 	template<typename rand_func = std_rand<0,1>> void setRandLight(rand_func _rand = std_rand<0,1>())
 	{
@@ -43,17 +43,7 @@ public:
 	void printTrain();
 	int getMask() const;
 private:
-	unsigned int __current = 0;
+	uint __steps = 0;
+	uint __current = 0;
 	std::vector<XWagon> __Wagons;
-};
-
-class XPlayer
-{
-public:
-	XPlayer (XTrain * pTrain):__train(pTrain){}
-	int step_next();
-	int step_prev();
-private:
-	unsigned int __steps = 0;
-	XTrain * __train;
 };

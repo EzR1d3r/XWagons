@@ -5,24 +5,24 @@ void XTrain::reset()
 	__current = 0;
 }
 
-int XTrain::next_wag()
+int XTrain::go_forward(uint steps)
 {
-	__current = __current + 1 < __Wagons.size() ? __current + 1 : 0;
-//	__steps++ ;
+	__current+= (__current + steps)%__Wagons.size();
+	__steps+=steps ;
 	return __current;
 }
 
-int XTrain::prev_wag()
+int XTrain::go_backward(uint steps)
 {
-	__current = __current - 1 == 0 ? 0 : __current - 1;
-//	__steps++ ;
+	__current = ( (__current - steps)%__Wagons.size() + __Wagons.size() )%__Wagons.size();
+	__steps+=steps ;
 	return __current;
 }
 
 void XTrain::printTrain()
 {
 	std::cout << "\n";
-	for (unsigned int i = 0; i < __Wagons.size(); i++)
+	for (uint i = 0; i < __Wagons.size(); i++)
 	{
 		std::cout  << "W_" << i << "_(" << __Wagons[i].getLight() << ")  ";
 	}
