@@ -5,7 +5,7 @@
 #include <ctime>
 #include <iostream>
 
-typedef uint uint;
+typedef unsigned int uint;
 
 template <uint min, uint max> struct std_rand
 {
@@ -27,11 +27,11 @@ private:
 class XTrain
 {
 public:
-	inline int getCurrent () const { return __current; }
+	inline XWagon * getCurrentWag () { return &__Wagons[__current]; }
 	inline int getCount () const { return __Wagons.size(); }
 	inline void setCurrent(int c){__current = c;}
 	inline void setCount(uint c){ __Wagons.resize(c); }
-	inline bool checkCount(uint count){return __Wagons.size() == count;}
+	inline bool checkCount(uint count) const {return __Wagons.size() == count;}
 	void reset();
 	int go_forward(uint steps);
 	int go_backward(uint steps);

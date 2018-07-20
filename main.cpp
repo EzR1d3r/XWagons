@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
 	train.setCount(10);
 	train.setRandLight();
 	train.printTrain();
+	train.getCurrentWag()->getLight();
 
 
 //	QApplication a(argc, argv);
