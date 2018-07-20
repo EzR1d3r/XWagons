@@ -3,18 +3,10 @@
 
 int main(int argc, char *argv[])
 {
-	XTrain train;
-	train.setCount(10);
-	train.setRandLight();
-	train.printTrain();
-	train.getCurrentWag()->getLight();
+	QApplication a(argc, argv);
+	Widget w;
+	w.show();
 
-
-//	QApplication a(argc, argv);
-//	Widget w;
-//	w.show();
-
-//	return a.exec();
+	return a.exec();
 	return 1;
-
 }
