@@ -109,6 +109,13 @@
         </spacer>
        </item>
        <item>
+        <widget class="QPushButton" name="btn_Reset">
+         <property name="text">
+          <string>RESET</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLineEdit" name="le_Count"/>
        </item>
        <item>

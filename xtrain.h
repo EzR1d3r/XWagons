@@ -1,5 +1,6 @@
 #pragma once
 
+#include "QDebug"
 #include <vector>
 #include <cstdlib>
 #include <ctime>
@@ -27,9 +28,13 @@ private:
 class XTrain
 {
 public:
-	inline XWagon * getCurrentWag () { return &__Wagons[__current]; }
+	inline XWagon * getCurrentWag () { return &__Wagons[__current]; } //out of range???
+	inline uint getCurrentWagIDX() const { return __current; }
 	inline int getCount () const { return __Wagons.size(); }
-	inline void setCurrent(int c){__current = c;}
+	inline void setCurrent(uint c){__current = c;}
+	inline void setFakeCurrent(int c){__fake_current = c;}
+	inline int getFakeCurrent () const { return __fake_current;}
+	inline uint getSteps () const {return __steps;}
 	inline void setCount(uint c){ __Wagons.resize(c); }
 	inline bool checkCount(uint count) const {return __Wagons.size() == count;}
 	void reset();
@@ -45,5 +50,6 @@ public:
 private:
 	uint __steps = 0;
 	uint __current = 0;
+	int __fake_current = 0;
 	std::vector<XWagon> __Wagons;
 };

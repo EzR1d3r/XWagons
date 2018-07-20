@@ -21,7 +21,11 @@ private slots:
 	void on_btn_Check_clicked();
 	void on_btn_Light_2_clicked();
 	void on_btn_Next_clicked();
+	void on_btn_Reset_clicked();
 
 private:
 	Ui::Widget *ui;
+	XTrain train;
+	void updateWag();
+	std::map<bool, QPixmap> __Light;
 };
