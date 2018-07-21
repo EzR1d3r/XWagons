@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QWidget>
+#include "QMessageBox"
 #include "XTrain.h"
 
 namespace Ui
@@ -22,12 +23,12 @@ private slots:
 	void on_btn_Light_clicked();
 	void on_btn_Next_clicked();
 	void on_btn_NewGame_clicked();
-
 	void on_btnInfo_clicked();
-
 private:
+	QMessageBox __box;
 	Ui::Widget *ui;
 	XTrain train;
 	void updateWag();
 	std::map<bool, QPixmap> __Light;
+	std_rand __rand;
 };

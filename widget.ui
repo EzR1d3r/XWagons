@@ -22,8 +22,14 @@
     <height>0</height>
    </size>
   </property>
+  <property name="maximumSize">
+   <size>
+    <width>802</width>
+    <height>212</height>
+   </size>
+  </property>
   <property name="windowTitle">
-   <string>Widget</string>
+   <string>XWagons</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="sizeConstraint">
@@ -34,14 +40,14 @@
      <item>
       <widget class="QPushButton" name="btn_NewGame">
        <property name="text">
-        <string>NewGame</string>
+        <string>Новая игра</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Max:</string>
+        <string>Макс. кол-во вагонов</string>
        </property>
       </widget>
      </item>
@@ -64,7 +70,7 @@
      <item>
       <widget class="QPushButton" name="btnInfo">
        <property name="text">
-        <string>Info</string>
+        <string>Информация</string>
        </property>
       </widget>
      </item>
@@ -163,7 +169,23 @@
      <item>
       <widget class="QPushButton" name="btn_Prev">
        <property name="text">
-        <string>&lt;&lt; PREVIOUS</string>
+        <string>&lt;&lt; НАЗАД</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="sbStepsPrev">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="value">
+        <number>1</number>
        </property>
       </widget>
      </item>
@@ -229,21 +251,50 @@
      <item>
       <widget class="QPushButton" name="btn_Check">
        <property name="text">
-        <string>CHECK</string>
+        <string>ОТВЕТ!</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btn_Light">
        <property name="text">
-        <string>LIGHT ON/OFF</string>
+        <string>СВЕТ ВКЛ/ВЫКЛ</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_6">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QSpinBox" name="sbStepsNext">
+       <property name="minimumSize">
+        <size>
+         <width>60</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="maximum">
+        <number>1000</number>
+       </property>
+       <property name="value">
+        <number>1</number>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QPushButton" name="btn_Next">
        <property name="text">
-        <string>NEXT &gt;&gt;</string>
+        <string>ВПЕРЕД &gt;&gt;</string>
        </property>
       </widget>
      </item>
