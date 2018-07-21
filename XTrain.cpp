@@ -1,4 +1,24 @@
-#include "xtrain.h"
+#include "XTrain.h"
+
+
+XWagon *XTrain::getWagAt(uint idx)
+{
+	try
+	{
+		return &__Wagons.at(idx);
+	}
+	catch (std::out_of_range ex)
+	{
+		qDebug() << ex.what();
+		return 0;
+	}
+}
+
+XWagon *XTrain::getCurrentWag()
+{
+	XWagon * wag = getWagAt(__current);
+	return wag;
+}
 
 void XTrain::reset()
 {
@@ -15,9 +35,7 @@ int XTrain::go_forward(uint steps)
 
 int XTrain::go_backward(uint steps) //uint..........
 {
-	__current = ( (__current - steps)%__Wagons.size() + __Wagons.size() )%__Wagons.size();
-	qDebug() << __current;
-	qDebug() << ( (0 - 1)%20 +20 )%20;
+	__current = ( __current + __Wagons.size() - steps%__Wagons.size() )%__Wagons.size();;
 	__steps+=steps ;
 	return __current;
 }

@@ -26,11 +26,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         widget.cpp \
-    xtrain.cpp
+    XTrain.cpp
 
 HEADERS += \
         widget.h \
-    xtrain.h
+    XTrain.h
 
 FORMS += \
         widget.ui

@@ -8,10 +8,10 @@
 
 typedef unsigned int uint;
 
-template <uint min, uint max> struct std_rand
+struct std_rand
 {
 	std_rand(){ srand( time(0) );}
-	uint operator()(){return (min + rand()%(max + 1 - min)); }
+	uint operator()(uint min, uint max){return (min + rand()%(max + 1 - min)); }
 };
 
 class XWagon
@@ -28,9 +28,10 @@ private:
 class XTrain
 {
 public:
-	inline XWagon * getCurrentWag () { return &__Wagons[__current]; } //out of range???
+	XWagon * getWagAt (uint idx);
+	XWagon * getCurrentWag ();
 	inline uint getCurrentWagIDX() const { return __current; }
-	inline int getCount () const { return __Wagons.size(); }
+	inline uint getCount () const { return __Wagons.size(); }
 	inline void setCurrent(uint c){__current = c;}
 	inline void setFakeCurrent(int c){__fake_current = c;}
 	inline int getFakeCurrent () const { return __fake_current;}
@@ -41,9 +42,9 @@ public:
 	int go_forward(uint steps);
 	int go_backward(uint steps);
 
-	template<typename rand_func = std_rand<0,1>> void setRandLight(rand_func _rand = std_rand<0,1>())
+	template<typename rand_func = std_rand > void setRandLight(rand_func _rand = std_rand())
 	{
-		for (auto &wag:__Wagons) wag.setLight( _rand() );
+		for (auto &wag:__Wagons) wag.setLight( _rand(0, 1) );
 	}
 	void printTrain();
 	int getMask() const;

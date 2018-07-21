@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QWidget>
-#include "xtrain.h"
+#include "XTrain.h"
 
 namespace Ui
 {
@@ -19,9 +19,11 @@ public:
 private slots:
 	void on_btn_Prev_clicked();
 	void on_btn_Check_clicked();
-	void on_btn_Light_2_clicked();
+	void on_btn_Light_clicked();
 	void on_btn_Next_clicked();
-	void on_btn_Reset_clicked();
+	void on_btn_NewGame_clicked();
+
+	void on_btnInfo_clicked();
 
 private:
 	Ui::Widget *ui;
