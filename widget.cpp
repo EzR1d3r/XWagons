@@ -34,7 +34,7 @@ void Widget::on_btn_Check_clicked()
 	}
 	else
 	{
-		__box.setText( QString("Ответ неверный!").arg( train.getSteps() ) );
+		__box.setText( QString("Ответ неверный!") );
 	}
 	__box.exec();
 }
