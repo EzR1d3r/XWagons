@@ -21,6 +21,7 @@ public:
 	XWagon(bool bLight):__light (bLight){}
 	inline bool getLight() const {return __light;}
 	inline void setLight(bool bLight){__light = bLight;}
+	inline void switchLight() { setLight(!__light); }
 private:
 	bool __light;
 };

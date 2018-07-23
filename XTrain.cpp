@@ -24,6 +24,7 @@ void XTrain::reset()
 {
 	__current = 0;
 	__fake_current = 0;
+	__steps = 0;
 }
 
 int XTrain::go_forward(uint steps)

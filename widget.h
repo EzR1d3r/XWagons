@@ -3,6 +3,7 @@
 #include <QWidget>
 #include "QMessageBox"
 #include "XTrain.h"
+#include "XTrainAlgorithm.h"
 
 namespace Ui
 {
@@ -27,7 +28,7 @@ private slots:
 private:
 	QMessageBox __box;
 	Ui::Widget *ui;
-	XTrain train;
+	XTrain __train;
 	void updateWag();
 	std::map<bool, QPixmap> __Light;
 	std_rand __rand;
