@@ -32,6 +32,7 @@ int XTrain::go_forward(uint steps)
 	if (__Wagons.size() == 0) return __current;
 	__current = (__current + steps)%__Wagons.size();
 	__steps+=steps ;
+	__fake_current+=steps;
 	return __current;
 }
 
@@ -40,6 +41,7 @@ int XTrain::go_backward(uint steps)
 	if (__Wagons.size() == 0) return __current;
 	__current = ( __current + __Wagons.size() - steps%__Wagons.size() )%__Wagons.size();;
 	__steps+=steps ;
+	__fake_current-=steps;
 	return __current;
 }
 

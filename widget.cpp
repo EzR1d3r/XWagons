@@ -21,7 +21,6 @@ void Widget::on_btn_Prev_clicked()
 {
 	uint steps = ui->sbStepsPrev->value();
 	__train.go_backward(steps);
-	__train.setFakeCurrent( __train.getFakeCurrent() - steps );
 	updateWag();
 }
 
@@ -50,7 +49,6 @@ void Widget::on_btn_Next_clicked()
 {
 	uint steps = ui->sbStepsNext->value();
 	__train.go_forward(steps);
-	__train.setFakeCurrent( __train.getFakeCurrent() + steps );
 	updateWag();
 }
 

@@ -34,7 +34,6 @@ public:
 	inline uint getCurrentWagIDX() const { return __current; }
 	inline uint getCount () const { return __Wagons.size(); }
 	inline void setCurrent(uint c){__current = c;}
-	inline void setFakeCurrent(int c){__fake_current = c;}
 	inline int getFakeCurrent () const { return __fake_current;}
 	inline uint getSteps () const {return __steps;}
 	inline void setCount(uint c){ __Wagons.resize(c); }

@@ -22,4 +22,5 @@ class XBinaryAlgorithm:public XTrainAlgorithm
 {
 public:
 	virtual void to_count (XTrain train) override;
+	void search(XTrain train, uint extent, bool control_state);
 };
