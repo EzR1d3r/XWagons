@@ -60,8 +60,11 @@ void Widget::on_btn_NewGame_clicked()
 	__train.setRandLight();
 	updateWag();
 	XDirectAlgorithm solver;
+	XBinaryAlgorithm solver_bin;
 	solver.to_count( __train );
-	qDebug() << solver.getCount() << solver.getSteps();
+	solver_bin.to_count(__train);
+	qDebug() << "dct: " << solver.getCount() << solver.getSteps();
+	qDebug() << "bin: " << solver_bin.getCount() << solver_bin.getSteps();
 }
 
 void Widget::updateWag()
