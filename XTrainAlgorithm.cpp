@@ -48,20 +48,27 @@ void XBinaryAlgorithm::search(XTrain &train, bool control_state)
 		train.go_backward( end );
 		if (train.getCurrentWag()->getLight() != control_state)
 		{
-			qDebug() << start << " - " << end;
+			if (i == 1)
+			{
+				__steps = train.getSteps();
+				__wag_count = end;
+				qDebug() << start << " - " << end << "!!!!!!" << train.getFakeCurrent();
+				return;
+			}
 			train.go_forward( start );
-			search(train, !control_state);
-			return;
+			control_state = !control_state;
+			qDebug() << start << " - " << end << "inn " << train.getFakeCurrent();
+			break;
 		}
-		else
-		{
-			train.go_forward(end);
-		}
+		train.go_forward( end );
+		qDebug() << start << " - " << end << "  " << train.getFakeCurrent();
 	}
+	search(train, control_state);
 }
 
 void XBinaryAlgorithm::to_count(XTrain train)
 {
+	qDebug() << "====================";
 	if ( train.checkCount(0) ) return;
 	train.reset();
 	search(train, train.getCurrentWag()->getLight());
