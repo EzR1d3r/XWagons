@@ -59,12 +59,16 @@ void Widget::on_btn_NewGame_clicked()
 	__train.setCount( __rand( 1, ui->sbMax->value() ) );
 	__train.setRandLight();
 	updateWag();
+
 	XDirectAlgorithm solver;
 	XBinaryAlgorithm solver_bin;
+	XBinaryAdvAlgorithm solver_adv_bin;
 	solver.to_count( __train );
 	solver_bin.to_count(__train);
+	solver_adv_bin.to_count(__train);
 	qDebug() << "dct: " << solver.getCount() << solver.getSteps();
 	qDebug() << "bin: " << solver_bin.getCount() << solver_bin.getSteps();
+	qDebug() << "bin_adv: " << solver_adv_bin.getCount() << solver_adv_bin.getSteps();
 }
 
 void Widget::updateWag()
