@@ -23,9 +23,9 @@ class XBinaryAlgorithm:public XTrainAlgorithm
 public:
 	virtual void to_count (XTrain train) override;
 protected:
-	void switchFromCurrentWag(XTrain &train, uint count);
+	void goForwardAndSwitch(XTrain &train, uint count);
 private:
-	void search(XTrain &train, bool control_state);
+	void binary_search(XTrain &train, bool control_state);
 };
 
 
@@ -34,5 +34,5 @@ class XBinaryAdvAlgorithm:public XBinaryAlgorithm
 public:
 	virtual void to_count (XTrain train) override;
 protected:
-	void setFromCurrentWag(XTrain &train, uint count, bool light);
+	void goForwardAndSet(XTrain &train, uint count, bool light);
 };

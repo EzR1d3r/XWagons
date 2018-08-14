@@ -1,4 +1,3 @@
-#include <cmath>
 #include "XTrainAlgorithm.h"
 
 void XDirectAlgorithm::to_count(XTrain train)
@@ -29,7 +28,7 @@ void XDirectAlgorithm::to_count(XTrain train)
 	}
 }
 
-void XBinaryAlgorithm::switchFromCurrentWag(XTrain &train, uint count)
+void XBinaryAlgorithm::goForwardAndSwitch(XTrain &train, uint count)
 {
 	for (uint i = 1; i <= count; i++)
 	{
@@ -38,12 +37,12 @@ void XBinaryAlgorithm::switchFromCurrentWag(XTrain &train, uint count)
 	}
 }
 
-void XBinaryAlgorithm::search(XTrain &train, bool control_state)
+void XBinaryAlgorithm::binary_search(XTrain &train, bool control_state)
 {
 	for (uint i = 1;; i*=2)
 	{
 		uint start = train.getFakeCurrent();
-		switchFromCurrentWag(train, i);
+		goForwardAndSwitch(train, i);
 		uint end = train.getFakeCurrent();
 		train.go_backward( end );
 		if (train.getCurrentWag()->getLight() != control_state)
@@ -58,7 +57,7 @@ void XBinaryAlgorithm::search(XTrain &train, bool control_state)
 			{
 				train.go_forward( start );
 				control_state = !control_state;
-				search(train, control_state);
+				binary_search(train, control_state);
 				break;
 			}
 		}
@@ -73,7 +72,7 @@ void XBinaryAlgorithm::to_count(XTrain train)
 {
 	if ( train.checkCount(0) ) return;
 	train.reset();
-	search(train, train.getCurrentWag()->getLight());
+	binary_search(train, train.getCurrentWag()->getLight());
 }
 
 
@@ -86,13 +85,13 @@ void XBinaryAdvAlgorithm::to_count(XTrain train)
 	for (uint i = 1;; i*=2)
 	{
 		uint start = train.getFakeCurrent();
-		switchFromCurrentWag(train, i);
+		goForwardAndSwitch(train, i);
 		uint end = train.getFakeCurrent();
 		train.go_backward( end );
 		if (train.getCurrentWag()->getLight() != control_state)
 		{
 			train.go_forward( start );
-			setFromCurrentWag(train, i, !control_state);
+			goForwardAndSet(train, i, !control_state);
 			train.go_backward( end );
 			train.getCurrentWag()->setLight(control_state);
 			train.go_forward( start );
@@ -101,7 +100,7 @@ void XBinaryAdvAlgorithm::to_count(XTrain train)
 				if (train.getCurrentWag()->getLight() == control_state)
 				{
 					__steps = train.getSteps();
-					__wag_count = train.getFakeCurrent();
+					__wag_count = train.getFakeCurrent() ? train.getFakeCurrent() : 1; //иначе при количестве 1, выдаёт 0
 					return;
 				}
 				train.go_forward(1);
@@ -115,7 +114,7 @@ void XBinaryAdvAlgorithm::to_count(XTrain train)
 	}
 }
 
-void XBinaryAdvAlgorithm::setFromCurrentWag(XTrain &train, uint count, bool light)
+void XBinaryAdvAlgorithm::goForwardAndSet(XTrain &train, uint count, bool light)
 {
 	for (uint i = 1; i <= count; i++)
 	{
